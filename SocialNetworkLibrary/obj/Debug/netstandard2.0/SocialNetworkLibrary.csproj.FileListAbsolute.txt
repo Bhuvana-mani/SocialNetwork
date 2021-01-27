@@ -1,0 +1,11 @@
+C:\WORKSPACE\SYSTEM_APP_DEVELOPMENT\assignments\SocialNetwork\SocialNetworkLibrary\obj\Debug\netstandard2.0\SocialNetworkLibrary.csprojAssemblyReference.cache
+C:\WORKSPACE\SYSTEM_APP_DEVELOPMENT\assignments\SocialNetwork\SocialNetworkLibrary\obj\Debug\netstandard2.0\SocialNetworkLibrary.AssemblyInfoInputs.cache
+C:\WORKSPACE\SYSTEM_APP_DEVELOPMENT\assignments\SocialNetwork\SocialNetworkLibrary\obj\Debug\netstandard2.0\SocialNetworkLibrary.AssemblyInfo.cs
+C:\WORKSPACE\SYSTEM_APP_DEVELOPMENT\assignments\SocialNetwork\SocialNetworkLibrary\obj\Debug\netstandard2.0\SocialNetworkLibrary.csproj.CoreCompileInputs.cache
+C:\WORKSPACE\SYSTEM_APP_DEVELOPMENT\assignments\SocialNetwork\SocialNetworkLibrary\bin\Debug\netstandard2.0\SocialNetworkLibrary.deps.json
+C:\WORKSPACE\SYSTEM_APP_DEVELOPMENT\assignments\SocialNetwork\SocialNetworkLibrary\bin\Debug\netstandard2.0\SocialNetworkLibrary.dll
+C:\WORKSPACE\SYSTEM_APP_DEVELOPMENT\assignments\SocialNetwork\SocialNetworkLibrary\bin\Debug\netstandard2.0\SocialNetworkLibrary.pdb
+C:\WORKSPACE\SYSTEM_APP_DEVELOPMENT\assignments\SocialNetwork\SocialNetworkLibrary\bin\Debug\netstandard2.0\SocialNetworkLibrary.xml
+C:\WORKSPACE\SYSTEM_APP_DEVELOPMENT\assignments\SocialNetwork\SocialNetworkLibrary\obj\Debug\netstandard2.0\SocialNetworkLibrary.dll
+C:\WORKSPACE\SYSTEM_APP_DEVELOPMENT\assignments\SocialNetwork\SocialNetworkLibrary\obj\Debug\netstandard2.0\SocialNetworkLibrary.xml
+C:\WORKSPACE\SYSTEM_APP_DEVELOPMENT\assignments\SocialNetwork\SocialNetworkLibrary\obj\Debug\netstandard2.0\SocialNetworkLibrary.pdb

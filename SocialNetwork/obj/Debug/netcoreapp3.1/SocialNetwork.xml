@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SocialNetwork</name>
+    </assembly>
+    <members>
+        <member name="M:SocialNetwork.Controllers.PostsController.GetAllQueried(SocialNetworkLibrary.Models.Posts.PostQueryDto)">
+            <summary>
+            
+            </summary>
+            <param name="postQuery"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SocialNetwork.Controllers.PostsController.GetPost(System.Int32)">
+            <summary>
+            fetched all the posts with Id 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SocialNetwork.Controllers.PostsController.GetDependeciesPost(System.Int32)">
+            <summary>
+            gets the dependies of the post
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SocialNetwork.Controllers.PostsController.CreatePost(SocialNetworkLibrary.Models.Posts.PostDto)">
+            <summary>
+            helps to create a new post
+            </summary>
+            <param name="postDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SocialNetwork.Controllers.PostsController.ReplacePost(System.Int32,SocialNetworkLibrary.Models.Posts.PostDto)">
+            <summary>
+            Replace the content of  an existing post
+            </summary>
+            <param name="id"></param>
+            <param name="postPut"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SocialNetwork.Controllers.PostsController.UpdatePost(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Update an existing post
+            </summary>
+            <param name="id"></param>
+            <param name="patches"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SocialNetwork.Controllers.PostsController.DeletePost(System.Int32)">
+            <summary>
+            Deletes a post
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
