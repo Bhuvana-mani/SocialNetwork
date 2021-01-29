@@ -8,10 +8,11 @@ namespace SocialNetworkLibrary.Models.Posts
    
         public class PostQueryDto
         {
-           
-            public string CreatedBy { get; set; }
-            
-            public bool IsEmpty => CreatedBy is null;
-        }
+       
+        public string CreatedBy { get; set; }
+
+        public bool IsEmpty =>  CreatedBy is null;
+
+    }
     
 }

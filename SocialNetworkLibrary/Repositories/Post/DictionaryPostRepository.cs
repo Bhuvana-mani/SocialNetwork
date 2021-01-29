@@ -24,12 +24,14 @@ namespace SocialNetworkLibrary.Repositories.Users
                 Description = "Freezing Winters",
                 CreatedBy = user,
                 
+                
             };
             var user1 = userRepository.GetUser(2);
             var post1 = new Post(2)
             {
                 Description = "Summer Activities in sweden",
                 CreatedBy = user1,
+               
                 
             };
             _posts.Add(1, post);
@@ -46,16 +48,6 @@ namespace SocialNetworkLibrary.Repositories.Users
             return result;
         }
 
-       /// <summary>
-       /// fetch all the dependencies in for the post by identifying their Id
-       /// </summary>
-       /// <param name="postId"></param>
-       /// <returns></returns>
-        public IEnumerable<Post> GetDependeciesForPost(int postId)
-        {
-            _posts.TryGetValue(postId, out Post result);
-            return result?.Dependencies ?? null;
-        }
 
        
         public IEnumerable<Post> GetPostsCreatedBy(string createdBy)
@@ -73,12 +65,12 @@ namespace SocialNetworkLibrary.Repositories.Users
         /// </summary>
         /// <param name="postDto"></param>
         /// <param name="user"></param>
-        /// <param name="dependecies"></param>
+        
         /// <returns></returns>
-        public Post Add(PostDto postDto, User user, List<Post> dependecies)
+        public Post Add(PostDto postDto, User user)
         {
             var id = _posts.Count + 1;
-            var post = new Post(id, postDto, dependecies, user);
+            var post = new Post(id, postDto, user);
             _posts.Add(id, post);
             return post;
         }
@@ -104,6 +96,16 @@ namespace SocialNetworkLibrary.Repositories.Users
         {
             _posts.Remove(post.Id);
         }
+        public void LikePost(Post post, User user)
+        {
+            post.UserLikes.Add(user);
+           
+        }
+        public void UnLikePost(Post post, User user)
+        {
+            post.UserLikes.Remove(user);
+           
+        }
 
         private void ApplyPatch<T>(T original, Dictionary<string, object> patches)
         {
@@ -120,9 +122,14 @@ namespace SocialNetworkLibrary.Repositories.Users
             }
         }
 
-        public object Add(PostDto postDto, IEnumerable<User> user, List<Post> dependecies)
+        public object Add(PostDto postDto, IEnumerable<User> user)
         {
             throw new NotImplementedException();
         }
+
+       
+
+       
+       
     }
 }

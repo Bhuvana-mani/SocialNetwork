@@ -44,17 +44,7 @@ namespace SocialNetwork.Controllers
                 return NotFound(post);
             return post;
         }
-        /// <summary>
-        /// gets the dependies of the post
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("{id:int}/dependencies")]
-        public IEnumerable<Post> GetDependeciesPost(int id)
-        {
-            return _postRepository.GetDependeciesForPost(id);
-        }
+        
         /// <summary>
         /// helps to create a new post
         /// </summary>
@@ -66,8 +56,8 @@ namespace SocialNetwork.Controllers
             try
             {
                 var user = _userRepository.GetUser(postDto.CreatedBy);
-                var dependecies = GetDependeciesOrThrow(postDto);
-                var post = _postRepository.Add(postDto, user, dependecies);
+               
+                var post = _postRepository.Add(postDto, user);
                 return CreatedAtAction(nameof(GetPost), routeValues: new { id = post.Id }, value: post);
             }
             catch (ValidationException e)
@@ -88,7 +78,7 @@ namespace SocialNetwork.Controllers
             var post = _postRepository.GetPostWithId(id);
             if (post is null)
                 return NotFound($"No post with {id} found");
-            var putPost = new Post(id, postPut, null, null);
+            var putPost = new Post(id, postPut, null);
             _postRepository.Update(putPost);
             return NoContent();
         }
@@ -123,21 +113,65 @@ namespace SocialNetwork.Controllers
             _postRepository.Delete(post);
             return NoContent();
         }
-
-        private List<Post> GetDependeciesOrThrow(PostDto postDto)
+        /// <summary>
+        /// Add a like to the post, a person can do only like once
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="createdBy"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("{id:int}/like/{createdby:string}")]
+        public ActionResult LikePost(int id, string createdBy)
         {
-            var dependecies = new List<Post>();
-            foreach (var dependecy in postDto.Dependencies)
+            var post = _postRepository.GetPostWithId(id);
+            if (post is null)
             {
-                var post = _postRepository.GetPostWithId(dependecy);
-                dependecies.Add(post);
-                if (post is null)
-                {
-                    throw new ValidationException($"The dependecy with id {dependecy} does not exist");
-                }
+                return NotFound($"Post with id {id} not found");
             }
-            return dependecies;
+            var user = _userRepository.GetUser(createdBy);
+            if (user is null)
+            {
+                return NotFound($"User with id {createdBy} not found");
+            }
+            var like = post.UserLikes.Contains(user);
+            if (like)
+            {
+                return BadRequest($"User with id {createdBy} is unauthorized for this request");
+            }
+            _postRepository.LikePost(post, user);
+            return NoContent();
+           
         }
+        /// <summary>
+        /// Remove unlike from the post
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="createdBy"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("{id:int}/unlike/{createdby:string}")]
+        public ActionResult UnLikePost(int id, string createdBy)
+        {
+            var post = _postRepository.GetPostWithId(id);
+            if (post is null)
+            {
+                return NotFound($"Post with id {id} not found");
+            }
+            var user = _userRepository.GetUser(createdBy);
+            if (user is null)
+            {
+                return NotFound($"User with id {createdBy} not found");
+            }
+            var unlike = post.UserLikes.Contains(user);
+            if (!unlike)
+            {
+                return BadRequest($"User with id {createdBy} is unauthorized for this request");
+            }
+            _postRepository.UnLikePost(post, user);
+            return NoContent();
+
+        }
+
 
         private IEnumerable<Post> RunPostQuery(PostQueryDto postQueryDto)
         {

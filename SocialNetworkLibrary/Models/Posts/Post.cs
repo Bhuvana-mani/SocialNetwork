@@ -8,6 +8,7 @@ namespace SocialNetworkLibrary.Models.Posts
 {
     public class Post
     {
+        private const string _rangeMessage = "{0} must be between {1} and {2}";
         private const string _stringMessage = "{0} must be between {2} and {1} characters long";
         /// <summary>
         /// fields required for the post
@@ -18,11 +19,11 @@ namespace SocialNetworkLibrary.Models.Posts
             Id = id;
         }
 
-        public Post(int id, PostDto postDto, List<Post> depedecies, User user)
+        public Post(int id, PostDto postDto, User user)
         {
             Id = id;
             Description = postDto.Description;
-            Dependencies = depedecies;
+            LastDate = postDto.LastDate;
             CreatedBy = user;
         }
 
@@ -40,8 +41,11 @@ namespace SocialNetworkLibrary.Models.Posts
         [MaxLength(10)]
         public string[] Comments { get; set; } = new string[0];
 
-        
-        public List<Post> Dependencies { get; set; } = new List<Post>();
+        [Range(typeof(DateTime), "1/1/2020", "1/1/2021", ErrorMessage = _rangeMessage)]
+        public DateTime LastDate { get; set; }
+
+       
+        public List<User>UserLikes  { get; set; } = new List<User>();
 
     }
 }

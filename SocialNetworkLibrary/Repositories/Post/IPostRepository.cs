@@ -8,21 +8,22 @@ namespace SocialNetworkLibrary.Repositories
 {
     public interface IPostRepository
     {
-        IEnumerable<Post> GetDependeciesForPost(int postId);
+       
 
         Post GetPostWithId(int id);
 
         IEnumerable<Post> GetPostsCreatedBy(string createdBy);
-
+        
         IEnumerable<Post> GetPosts();
 
-        Post Add(PostDto post, User user, List<Post> dependecies);
+        Post Add(PostDto post, User user);
 
         void Update(Post post);
 
         void ApplyPatch(Post post, Dictionary<string, object> patches);
 
         void Delete(Post post);
-        //object Add(PostDto postDto, IEnumerable<User> user, List<Post> dependecies);
+        void LikePost(Post post, User user);
+        void UnLikePost(Post post, User user);
     }
 }
