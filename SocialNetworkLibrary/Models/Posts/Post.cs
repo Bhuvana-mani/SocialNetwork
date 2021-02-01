@@ -23,7 +23,7 @@ namespace SocialNetworkLibrary.Models.Posts
         {
             Id = id;
             Description = postDto.Description;
-            LastDate = postDto.LastDate;
+            LastUpdated = postDto.LastUpdated;
             CreatedBy = user;
         }
 
@@ -42,7 +42,7 @@ namespace SocialNetworkLibrary.Models.Posts
         public string[] Comments { get; set; } = new string[0];
 
         [Range(typeof(DateTime), "1/1/2020", "1/1/2021", ErrorMessage = _rangeMessage)]
-        public DateTime LastDate { get; set; }
+        public DateTime LastUpdated { get; set; }
 
        
         public List<User>UserLikes  { get; set; } = new List<User>();

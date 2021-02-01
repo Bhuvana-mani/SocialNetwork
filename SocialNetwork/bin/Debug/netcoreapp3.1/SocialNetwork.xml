@@ -4,23 +4,15 @@
         <name>SocialNetwork</name>
     </assembly>
     <members>
-        <member name="M:SocialNetwork.Controllers.PostsController.GetAllQueried(SocialNetworkLibrary.Models.Posts.PostQueryDto)">
+        <member name="M:SocialNetwork.Controllers.PostsController.GetPosts">
             <summary>
-            
+            Fetches all existing posts.
             </summary>
-            <param name="postQuery"></param>
-            <returns></returns>
+            <returns>All existing posts</returns>
         </member>
         <member name="M:SocialNetwork.Controllers.PostsController.GetPost(System.Int32)">
             <summary>
             fetched all the posts with Id 
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SocialNetwork.Controllers.PostsController.GetDependeciesPost(System.Int32)">
-            <summary>
-            gets the dependies of the post
             </summary>
             <param name="id"></param>
             <returns></returns>
@@ -53,6 +45,42 @@
             Deletes a post
             </summary>
             <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SocialNetwork.Controllers.PostsController.LikePost(System.Int32,System.Int32)">
+            <summary>
+            Add a like to the post, a person can do only like once
+            </summary>
+            <param name="id"></param>
+            <param name="userbyId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SocialNetwork.Controllers.PostsController.UnLikePost(System.Int32,System.Int32)">
+            <summary>
+            Remove unlike from the post
+            </summary>
+            <param name="id"></param>
+            <param name="userbyId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SocialNetwork.Controllers.UsersController.GetUsers">
+            <summary>
+            Lists out all the user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SocialNetwork.Controllers.UsersController.GetUserById(System.Int32)">
+            <summary>
+            get user with Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SocialNetwork.Controllers.UsersController.CreateUser(SocialNetworkLibrary.Models.Users.User)">
+            <summary>
+            creates a new user
+            </summary>
+            <param name="user"></param>
             <returns></returns>
         </member>
     </members>

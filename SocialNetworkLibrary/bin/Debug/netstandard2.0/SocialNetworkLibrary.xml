@@ -4,5 +4,54 @@
         <name>SocialNetworkLibrary</name>
     </assembly>
     <members>
+        <member name="M:SocialNetworkLibrary.Models.Posts.Post.#ctor(System.Int32)">
+            <summary>
+            fields required for the post
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="P:SocialNetworkLibrary.Models.Posts.Post.Description">
+            <summary>
+            specify the length of the message
+            </summary>
+        </member>
+        <member name="T:SocialNetworkLibrary.Models.Users.User">
+            <summary>
+            the user profile
+            </summary>
+        </member>
+        <member name="M:SocialNetworkLibrary.Repositories.Users.DictionaryPostRepository.#ctor(SocialNetworkLibrary.Repositories.IUserRepository)">
+            <summary>
+            intilaize posts
+            </summary>
+            <param name="userRepository"></param>
+        </member>
+        <member name="M:SocialNetworkLibrary.Repositories.Users.DictionaryPostRepository.GetPostWithId(System.Int32)">
+            <summary>
+            fetches posts with their id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SocialNetworkLibrary.Repositories.Users.DictionaryPostRepository.Add(SocialNetworkLibrary.Models.Posts.PostDto,SocialNetworkLibrary.Models.Users.User)">
+            <summary>
+            create a new post by a registerd user
+            </summary>
+            <param name="postDto"></param>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SocialNetworkLibrary.Repositories.Users.DictionaryPostRepository.Update(SocialNetworkLibrary.Models.Posts.Post)">
+            <summary>
+            update an existing post by fetching its id
+            </summary>
+            <param name="post"></param>
+        </member>
+        <member name="M:SocialNetworkLibrary.Repositories.Users.DictionaryPostRepository.Delete(SocialNetworkLibrary.Models.Posts.Post)">
+            <summary>
+            Delete a post by identfying its Id
+            </summary>
+            <param name="post"></param>
+        </member>
     </members>
 </doc>

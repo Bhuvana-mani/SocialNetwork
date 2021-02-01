@@ -36,11 +36,11 @@ namespace SocialNetwork.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("{id:int}")]
-        public ActionResult<User> GetUser(int id)
+        public ActionResult<User> GetUserById(int id)
         {
             try
             {
-                return _userRepository.GetUser(id);
+                return _userRepository.GetUserById(id);
             }
             catch (ArgumentException)
             {

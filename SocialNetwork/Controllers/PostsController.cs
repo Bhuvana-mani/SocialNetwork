@@ -10,6 +10,8 @@ using SocialNetworkLibrary.Repositories.Users;
 
 namespace SocialNetwork.Controllers
 {
+    [Route("api/posts")]
+    [ApiController]
     public class PostsController : ControllerBase
     {
         private readonly IPostRepository _postRepository;
@@ -21,15 +23,15 @@ namespace SocialNetwork.Controllers
             _userRepository = userRepository;
         }
         /// <summary>
-        /// 
+        /// Fetches all existing posts.
         /// </summary>
-        /// <param name="postQuery"></param>
-        /// <returns></returns>
+        /// <returns>All existing posts</returns>
         [HttpGet]
-        public IEnumerable<Post> GetAllQueried([FromQuery] PostQueryDto postQuery)
+        public IEnumerable<Post> GetPosts()
         {
-            return RunPostQuery(postQuery);
+            return _postRepository.GetPosts();
         }
+
         /// <summary>
         /// fetched all the posts with Id 
         /// </summary>
@@ -55,7 +57,7 @@ namespace SocialNetwork.Controllers
         {
             try
             {
-                var user = _userRepository.GetUser(postDto.CreatedBy);
+                var user = _userRepository.GetUserById(postDto.CreatedBy);
                
                 var post = _postRepository.Add(postDto, user);
                 return CreatedAtAction(nameof(GetPost), routeValues: new { id = post.Id }, value: post);
@@ -98,6 +100,7 @@ namespace SocialNetwork.Controllers
             _postRepository.ApplyPatch(post, patches);
             return NoContent();
         }
+
         /// <summary>
         /// Deletes a post
         /// </summary>
@@ -117,26 +120,26 @@ namespace SocialNetwork.Controllers
         /// Add a like to the post, a person can do only like once
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="createdBy"></param>
+        /// <param name="userbyId"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("{id:int}/like/{createdby:string}")]
-        public ActionResult LikePost(int id, string createdBy)
+        [Route("{id:int}/like/{userbyId:int}")]
+        public ActionResult LikePost(int id, int userbyId)
         {
             var post = _postRepository.GetPostWithId(id);
             if (post is null)
             {
                 return NotFound($"Post with id {id} not found");
             }
-            var user = _userRepository.GetUser(createdBy);
+            var user = _userRepository.GetUserById(userbyId);
             if (user is null)
             {
-                return NotFound($"User with id {createdBy} not found");
+                return NotFound($"User with id {userbyId} not found");
             }
             var like = post.UserLikes.Contains(user);
             if (like)
             {
-                return BadRequest($"User with id {createdBy} is unauthorized for this request");
+                return BadRequest($"User with id {userbyId} is unauthorized for this request");
             }
             _postRepository.LikePost(post, user);
             return NoContent();
@@ -146,26 +149,26 @@ namespace SocialNetwork.Controllers
         /// Remove unlike from the post
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="createdBy"></param>
+        /// <param name="userbyId"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("{id:int}/unlike/{createdby:string}")]
-        public ActionResult UnLikePost(int id, string createdBy)
+        [Route("{id:int}/unlike/{userbyId:int}")]
+        public ActionResult UnLikePost(int id,int userbyId)
         {
             var post = _postRepository.GetPostWithId(id);
             if (post is null)
             {
                 return NotFound($"Post with id {id} not found");
             }
-            var user = _userRepository.GetUser(createdBy);
+            var user = _userRepository.GetUserById(userbyId);
             if (user is null)
             {
-                return NotFound($"User with id {createdBy} not found");
+                return NotFound($"User with id {userbyId} not found");
             }
             var unlike = post.UserLikes.Contains(user);
             if (!unlike)
             {
-                return BadRequest($"User with id {createdBy} is unauthorized for this request");
+                return BadRequest($"User with id {userbyId} is unauthorized for this request");
             }
             _postRepository.UnLikePost(post, user);
             return NoContent();
@@ -173,16 +176,6 @@ namespace SocialNetwork.Controllers
         }
 
 
-        private IEnumerable<Post> RunPostQuery(PostQueryDto postQueryDto)
-        {
-            if (postQueryDto.IsEmpty)
-                return _postRepository.GetPosts();
-            
-            else if (!(postQueryDto.CreatedBy is null))
-                return _postRepository.GetPostsCreatedBy(postQueryDto.CreatedBy);
-            
-            else
-                throw new NotSupportedException("The query combination selected is not supported");
-        }
+       
     }
 }

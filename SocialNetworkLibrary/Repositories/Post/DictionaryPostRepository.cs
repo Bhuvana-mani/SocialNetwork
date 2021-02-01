@@ -11,6 +11,7 @@ namespace SocialNetworkLibrary.Repositories.Users
 {
     public class DictionaryPostRepository : IPostRepository
     {
+        private readonly IPostRepository _postRepository;
         private readonly Dictionary<int, Post> _posts = new Dictionary<int, Post>();
 /// <summary>
 /// intilaize posts
@@ -18,7 +19,7 @@ namespace SocialNetworkLibrary.Repositories.Users
 /// <param name="userRepository"></param>
         public DictionaryPostRepository(IUserRepository userRepository)
         {
-            var user = userRepository.GetUser(1);
+            var user = userRepository.GetUserById(1);
             var post = new Post(1)
             {
                 Description = "Freezing Winters",
@@ -26,7 +27,7 @@ namespace SocialNetworkLibrary.Repositories.Users
                 
                 
             };
-            var user1 = userRepository.GetUser(2);
+            var user1 = userRepository.GetUserById(2);
             var post1 = new Post(2)
             {
                 Description = "Summer Activities in sweden",
@@ -48,14 +49,8 @@ namespace SocialNetworkLibrary.Repositories.Users
             return result;
         }
 
-
-       
-        public IEnumerable<Post> GetPostsCreatedBy(string createdBy)
-        {
-            throw new NotImplementedException();
-        }
-
-       
+            
+            
         public IEnumerable<Post> GetPosts()
         {
             return _posts.Values;
@@ -87,6 +82,7 @@ namespace SocialNetworkLibrary.Repositories.Users
         public void ApplyPatch(Post post, Dictionary<string, object> patches)
         {
             ApplyPatch<Post>(post, patches);
+            post.LastUpdated = DateTime.Now;
         }
 /// <summary>
 /// Delete a post by identfying its Id
@@ -99,12 +95,12 @@ namespace SocialNetworkLibrary.Repositories.Users
         public void LikePost(Post post, User user)
         {
             post.UserLikes.Add(user);
-           
+            _postRepository.Update(post);
         }
         public void UnLikePost(Post post, User user)
         {
             post.UserLikes.Remove(user);
-           
+            _postRepository.Update(post);
         }
 
         private void ApplyPatch<T>(T original, Dictionary<string, object> patches)
@@ -127,9 +123,9 @@ namespace SocialNetworkLibrary.Repositories.Users
             throw new NotImplementedException();
         }
 
-       
-
-       
-       
+        void IPostRepository.ApplyPatch<T>(T original, Dictionary<string, object> patches)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

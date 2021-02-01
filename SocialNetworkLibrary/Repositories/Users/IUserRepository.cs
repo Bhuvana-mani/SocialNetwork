@@ -11,9 +11,7 @@ namespace SocialNetworkLibrary.Repositories
     {
         void Add(User user);
 
-        User GetUser(int id);
-        User GetUser(string createdby);
-        IEnumerable<User> GetUsers(string createdBy);
+        User GetUserById(int id);
         bool UserNameIsUnique(User user);
         IEnumerable<User> GetUsers();
     }

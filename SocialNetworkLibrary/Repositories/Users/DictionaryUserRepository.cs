@@ -54,20 +54,36 @@ namespace SocialNetworkLibrary.Repositories.Users
             return _users.Values;
         }
 
-        public User GetUser(int id)
+        public User GetUserById(int id)
         {
-            return _users[id];
+            if (_users.ContainsKey(id))
+            {
+                return _users[id];
+            }
+            return null;
         }
 
-        public IEnumerable<User> GetUsers(string createdBy)
+       
+
+        void IUserRepository.Add(User user)
         {
             throw new NotImplementedException();
         }
 
-        public User GetUser(string createdby)
+       
+        User IUserRepository.GetUserById(int id)
         {
-            return _users.Single(e => e.Value.UserName == createdby).Value;
-            
+            throw new NotImplementedException();
+        }
+
+        bool IUserRepository.UserNameIsUnique(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerable<User> IUserRepository.GetUsers()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -15,10 +15,10 @@ namespace SocialNetworkLibrary.Models.Posts
         public string Description { get; set; }
 
         [Required]
-        public string CreatedBy { get; set; }
+        public int CreatedBy { get; set; }
 
         [Range(typeof(DateTime), "1/1/2020", "1/1/2021", ErrorMessage = _rangeMessage)]
-        public DateTime LastDate { get; set; }
+        public DateTime LastUpdated { get; set; }
 
         [MaxLength(4)]
         public string[] Comments { get; set; } = new string[0];
