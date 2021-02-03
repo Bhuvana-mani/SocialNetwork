@@ -12,7 +12,7 @@ namespace SocialNetworkLibrary.Repositories
         void Add(User user);
 
         User GetUserById(int id);
-        bool UserNameIsUnique(User user);
+        bool UserNameIsNotUnique(User user);
         IEnumerable<User> GetUsers();
     }
 }

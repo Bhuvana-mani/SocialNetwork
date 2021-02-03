@@ -11,7 +11,7 @@ namespace SocialNetworkLibrary.Repositories.Users
 {
     public class DictionaryPostRepository : IPostRepository
     {
-        private readonly IPostRepository _postRepository;
+       
         private readonly Dictionary<int, Post> _posts = new Dictionary<int, Post>();
 /// <summary>
 /// intilaize posts
@@ -95,12 +95,12 @@ namespace SocialNetworkLibrary.Repositories.Users
         public void LikePost(Post post, User user)
         {
             post.UserLikes.Add(user);
-            _postRepository.Update(post);
+            Update(post);
         }
         public void UnLikePost(Post post, User user)
         {
             post.UserLikes.Remove(user);
-            _postRepository.Update(post);
+            Update(post);
         }
 
         private void ApplyPatch<T>(T original, Dictionary<string, object> patches)

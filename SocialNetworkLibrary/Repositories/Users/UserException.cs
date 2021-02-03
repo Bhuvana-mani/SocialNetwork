@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SocialNetworkLibrary.Models.Users;
 
 namespace SocialNetworkLibrary.Repositories.Users
 {

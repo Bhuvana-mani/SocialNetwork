@@ -24,20 +24,13 @@
             <param name="postDto"></param>
             <returns></returns>
         </member>
-        <member name="M:SocialNetwork.Controllers.PostsController.ReplacePost(System.Int32,SocialNetworkLibrary.Models.Posts.PostDto)">
-            <summary>
-            Replace the content of  an existing post
-            </summary>
-            <param name="id"></param>
-            <param name="postPut"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SocialNetwork.Controllers.PostsController.UpdatePost(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object})">
+        <member name="M:SocialNetwork.Controllers.PostsController.UpdatePost(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)">
             <summary>
             Update an existing post
             </summary>
             <param name="id"></param>
             <param name="patches"></param>
+            <param name="createdBy"></param>
             <returns></returns>
         </member>
         <member name="M:SocialNetwork.Controllers.PostsController.DeletePost(System.Int32)">
@@ -52,7 +45,7 @@
             Add a like to the post, a person can do only like once
             </summary>
             <param name="id"></param>
-            <param name="userbyId"></param>
+            <param name="createdBy"></param>
             <returns></returns>
         </member>
         <member name="M:SocialNetwork.Controllers.PostsController.UnLikePost(System.Int32,System.Int32)">
@@ -60,7 +53,7 @@
             Remove unlike from the post
             </summary>
             <param name="id"></param>
-            <param name="userbyId"></param>
+            <param name="createdBy"></param>
             <returns></returns>
         </member>
         <member name="M:SocialNetwork.Controllers.UsersController.GetUsers">

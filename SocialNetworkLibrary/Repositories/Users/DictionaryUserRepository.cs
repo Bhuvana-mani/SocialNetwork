@@ -31,14 +31,14 @@ namespace SocialNetworkLibrary.Repositories.Users
         }
        
 
-        public bool UserNameIsUnique(User user)
+        public bool UserNameIsNotUnique(User user)
         {
             return _users.Any(e => e.Value.UserName == user.UserName);
         }
 
         public void Add(User user)
         {
-            if (!UserNameIsUnique(user))
+            if (UserNameIsNotUnique(user))
             {
                 throw new NonUniqueUserName();
             }
@@ -65,25 +65,6 @@ namespace SocialNetworkLibrary.Repositories.Users
 
        
 
-        void IUserRepository.Add(User user)
-        {
-            throw new NotImplementedException();
-        }
-
-       
-        User IUserRepository.GetUserById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        bool IUserRepository.UserNameIsUnique(User user)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<User> IUserRepository.GetUsers()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
